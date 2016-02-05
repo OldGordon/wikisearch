@@ -118,3 +118,10 @@ table {
 .submit {
   line-height: 0.7;
 }
+
+.resultSearch {
+  min-height: 100px;
+  height: auto !important;
+  height: 100px;
+
+}

@@ -2,22 +2,25 @@ $("document").ready(function(){
 	console.log("hi there");
 
 	var send = document.querySelector('#go');//get buttom #go
+
 	send.addEventListener('click', function(e){ //event waiting for click
-        var drawResults = function(obj){
-    	//aquí creamos los divs que contendran los wiki articles
-    	//pensar en borrar los anteriores antes de poner los nuevos
-    	//divs
-    }
+
+       if ($(".resultSearch").length){
+           $(".resultSearch").remove();
+       }
 	   	var tema = $("#box").val();
 	   	var url = "http://en.wikipedia.org/w/api.php?"
 	   			+ "format=json&action=query&generator=search&gsrnamespace=0"
 	   			+  "&gsrlimit=3&prop=pageimages|extracts&pilimit="
 	   			+ "max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch="
 	   			+ tema;
+        getUrl(url);
+	});
 
-	    $.get(url, function(result){
+    var getUrl = function(url){
 
-	    	//console.log(result);
+        $.get(url, function(result){
+
 	        var data = {};
 	    	var _result = result.query.pages;
 	   			for( var k in _result){
@@ -26,22 +29,26 @@ $("document").ready(function(){
 	   					data.title = _result[k].title;
 	   					data.extract = _result[k].extract;
 	   					if (_result[k].thumbnail === undefined){
-	   						data.img = "";
+	   						data.img = "thum.jpg";
 	   					}else {
 	   						data.img = _result[k].thumbnail.source;
 	   					}
-
-	   				    console.log(data.img);
+                        drawResults(data);
+	   				    //console.log(data.img);
 	   				}
     			}
-	    	drawResults(data);
+
 
 	    });
 
 	});
 
+
+    }
     var drawResults = function(dt){
 
-  }
+        var dataDiv = "<div class='resultSearch'>" + dt.img + dt.title + dt.extract + "</div>"
+        $("#container").append(dataDiv);
+   }
 
 });
