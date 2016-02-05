@@ -27,8 +27,8 @@ body {
 	text-align:center;
 	font-size: 24px;
 	line-height: 1;
-    background-color: #006400;
-    color: white;
+    background-color: white;
+    color: black;
 }
 	h1{
   font-size: 2rem;
@@ -94,9 +94,17 @@ table {
 	line-height: 0.7;
 }
 .resultSearch{
-    min-height: 100px;
-    height:auto !important;
-    height: 100px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 1%;
+    background: slateGray;
+    color: lavender;
+    text-align: center;
+    border: solid 2 ;
+    border-color: aliceblue;
     width: 700px;
     margin-top: 30px;
     background-color:darkslategray;
@@ -105,4 +113,7 @@ table {
 }
 .thumbnail{
     margin-bottom: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 5%;
 }
