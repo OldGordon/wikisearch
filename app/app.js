@@ -11,7 +11,7 @@ $("document").ready(function(){
 	   	var tema = $("#box").val();
 	   	var url = "http://en.wikipedia.org/w/api.php?"
 	   			+ "format=json&action=query&generator=search&gsrnamespace=0"
-	   			+  "&gsrlimit=3&prop=pageimages|extracts&pilimit="
+	   			+  "&gsrlimit=10&prop=pageimages|extracts&pilimit="
 	   			+ "max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch="
 	   			+ tema;
         getUrl(url);
@@ -35,20 +35,16 @@ $("document").ready(function(){
 	   					}
                         drawResults(data);
 	   				    //console.log(data.img);
-	   				}
-    			}
-
-
+	   				};
+    			};
 	    });
-
-	});
-
-
-    }
+	};
     var drawResults = function(dt){
-
-        var dataDiv = "<div class='resultSearch'>" + dt.img + dt.title + dt.extract + "</div>"
+        var dataTitle = "<h2>" + dt.title + "</h2>";
+        var dataImg = "<img class='thumbnail' src='" + dt.img + "'/>";
+        var dataDiv = "<div class='resultSearch'>" + dataImg + dataTitle + "</br>" +  dt.extract + "</div>";
         $("#container").append(dataDiv);
+
    }
 
 });

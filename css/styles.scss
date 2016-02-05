@@ -63,7 +63,7 @@ table {
 	align-items: center;
 }
 .title{
-	margin: 60px;
+	margin: 40px;
 
 }
 .freecode{
@@ -97,4 +97,12 @@ table {
     min-height: 100px;
     height:auto !important;
     height: 100px;
+    width: 700px;
+    margin-top: 30px;
+    background-color:darkslategray;
+    border-radius: 4%;
+    padding: 20px;
+}
+.thumbnail{
+    margin-bottom: 30px;
 }
