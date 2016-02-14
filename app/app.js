@@ -8,6 +8,7 @@ $("document").ready(function(){
        if ($(".resultSearch").length){
            $(".resultSearch").remove();
        }
+        if($("#box").val() !== ""){
 	   	var tema = $("#box").val();
 	   	var url = "http://en.wikipedia.org/w/api.php?"
 	   			+ "format=json&action=query&generator=search&gsrnamespace=0"
@@ -15,26 +16,32 @@ $("document").ready(function(){
 	   			+ "max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch="
 	   			+ tema;
         getUrl(url);
+        }else{
+            alert("Insert your search in the box, please");
+        }
 	});
 
     var getUrl = function(url){
 
-        $.get(url, function(result){
-
+        $.getJSON(url, function(result){
+            console.log(result);
 	        var data = {};
 	    	var _result = result.query.pages;
+
 	   			for( var k in _result){
 	   				if(_result.hasOwnProperty(k)){
-	   					//console.log(_result[k].title);
+	   					data.pageid = _result[k].pageid;
 	   					data.title = _result[k].title;
 	   					data.extract = _result[k].extract;
-	   					if (_result[k].thumbnail === undefined){
-	   						data.img = "thum.jpg";
-	   					}else {
-	   						data.img = _result[k].thumbnail.source;
-	   					}
-                        drawResults(data);
-	   				    //console.log(data.img);
+
+                            if (_result[k].thumbnail === undefined){
+                                data.img = "thum.jpg";
+                            }else {
+                                data.img = _result[k].thumbnail.source;
+                            }
+
+                            drawResults(data);
+
 	   				};
     			};
 	    });
@@ -42,7 +49,10 @@ $("document").ready(function(){
     var drawResults = function(dt){
         var dataTitle = "<h2>" + dt.title + "</h2>";
         var dataImg = "<img class='thumbnail' src='" + dt.img + "'/>";
-        var dataDiv = "<div class='resultSearch'>" + dataImg + dataTitle + "</br>" +  dt.extract + "</div>";
+        var dataDiv = "<a href='https://en.wikipedia.org/?curid="
+                       + dt.pageid + "'><div class='resultSearch'>"
+                       + dataImg + dataTitle + "</br>"
+                       + dt.extract + "</div></a>";
         $("#container").append(dataDiv);
 
    }

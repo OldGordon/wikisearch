@@ -28,7 +28,7 @@ body {
 	font-size: 24px;
 	line-height: 1;
     background-color: white;
-    color: black;
+    color: #006400;
 }
 	h1{
   font-size: 2rem;
@@ -79,7 +79,7 @@ table {
 	padding: 6px 16px;
     border: 1px solid #446d88;
     border-radius: .2em;
-    background: #58a linear-gradient(#77a0bb, #58a);
+    background: #014f7f   linear-gradient(#014f7f  ,#006400 );
     box-shadow: 0 1px 5px gray;
     color: white;
     text-shadow: 0 -1px 1px #335166;
@@ -97,23 +97,29 @@ table {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    width: 100%;
+   // width: 100%;
     height: auto;
     padding: 1%;
-    background: slateGray;
-    color: lavender;
     text-align: center;
     border: solid 2 ;
     border-color: aliceblue;
-    width: 700px;
+    width:1000px;
     margin-top: 30px;
-    background-color:darkslategray;
+    background-color:#014f7f  ;
     border-radius: 4%;
     padding: 20px;
+    color:white;
+
 }
 .thumbnail{
     margin-bottom: 30px;
     width: 60px;
     height: 60px;
     border-radius: 5%;
+}
+a{
+    text-decoration: none;
+}
+a:visited{
+    color:white;
 }
