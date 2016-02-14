@@ -8,13 +8,15 @@ $("document").ready(function () {
         if (textBox.value !== "") {
             console.log(textBox.value);
             textBox.value = "";
+            $(".error").empty();
         }
     },true);
 
 	send.addEventListener('click', function (e) { //event waiting for click
 
-        if ($(".resultSearch").length) {
+        if ($(".resultSearch").length || $(".error").length ) {
             $(".resultSearch").remove();
+            $(".error").empty();
         }
         if ($("#box").val() !== "") {
             var tema = $("#box").val();
@@ -37,7 +39,7 @@ $("document").ready(function () {
 
             if (!result.hasOwnProperty("query") ){
 
-                $("#container").text("Sorry, no results to show ");
+                $(".error").text("Sorry, no results to show ");
 
 
             } else {
