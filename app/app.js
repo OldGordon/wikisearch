@@ -1,34 +1,39 @@
-$("document").ready(function(){
+$("document").ready(function () {
 	console.log("hi there");
 
 	var send = document.querySelector('#go');//get buttom #go
+    var textBox = document.querySelector('#box');
+    textBox.addEventListener('focus', function () {
+        if (textBox.val() !== "") {
+            textBox.val = "";
+        }
+    });
+	send.addEventListener('click', function (e) { //event waiting for click
 
-	send.addEventListener('click', function(e){ //event waiting for click
-
-       if ($(".resultSearch").length){
-           $(".resultSearch").remove();
-       }
-        if($("#box").val() !== ""){
-	   	var tema = $("#box").val();
-	   	var url = "http://en.wikipedia.org/w/api.php?"
-	   			+ "format=json&action=query&generator=search&gsrnamespace=0"
-	   			+  "&gsrlimit=10&prop=pageimages|extracts&pilimit="
-	   			+ "max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch="
-	   			+ tema;
-        getUrl(url);
-        }else{
+        if ($(".resultSearch").length) {
+            $(".resultSearch").remove();
+        }
+        if ($("#box").val() !== "") {
+            var tema = $("#box").val();
+            var url = "http://en.wikipedia.org/w/api.php?"
+                    + "format=json&action=query&generator=search&gsrnamespace=0"
+                    +  "&gsrlimit=10&prop=pageimages|extracts&pilimit="
+                    + "max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch="
+                    + tema;
+            getUrl(url);
+        } else {
             alert("Insert your search in the box, please");
         }
 	});
 
-    var getUrl = function(url){
+    var getUrl = function (url) {
 
-        $.getJSON(url, function(result){
-            console.log(result);
-	        var data = {};
-	    	var _result = result.query.pages;
+        $.getJSON(url, function (result) {
+           console.log(result);
+	       var data = {},
+           _result = result.query.pages;
 
-	   			for( var k in _result){
+	   			for (var k in _result) {
 	   				if(_result.hasOwnProperty(k)){
 	   					data.pageid = _result[k].pageid;
 	   					data.title = _result[k].title;
