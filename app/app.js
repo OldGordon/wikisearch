@@ -1,13 +1,16 @@
 $("document").ready(function () {
 	console.log("hi there");
 
-	var send = document.querySelector('#go');//get buttom #go
-    var textBox = document.querySelector('#box');
+	var send = document.querySelector('#go'),//get buttom #go
+        textBox = document.querySelector('#box');
+
     textBox.addEventListener('focus', function () {
-        if (textBox.val() !== "") {
-            textBox.val = "";
+        if (textBox.value !== "") {
+            console.log(textBox.value);
+            textBox.value = "";
         }
-    });
+    },true);
+
 	send.addEventListener('click', function (e) { //event waiting for click
 
         if ($(".resultSearch").length) {
@@ -30,9 +33,16 @@ $("document").ready(function () {
 
         $.getJSON(url, function (result) {
            console.log(result);
-	       var data = {},
-           _result = result.query.pages;
+	       var data = {};
 
+            if (!result.hasOwnProperty("query") ){
+
+                $("#container").text("Sorry, no results to show ");
+
+
+            } else {
+
+                _result = result.query.pages;
 	   			for (var k in _result) {
 	   				if(_result.hasOwnProperty(k)){
 	   					data.pageid = _result[k].pageid;
@@ -49,7 +59,9 @@ $("document").ready(function () {
 
 	   				};
     			};
+            };
 	    });
+
 	};
     var drawResults = function(dt){
         var dataTitle = "<h2>" + dt.title + "</h2>";
