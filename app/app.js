@@ -59,20 +59,22 @@ $("document").ready(function () {
 
                             drawResults(data);
 
-	   				};
-    			};
-            };
+	   				}
+    			}
+            }
 	    });
 
 	};
     var drawResults = function(dt){
-        var dataTitle = "<h2>" + dt.title + "</h2>";
-        var dataImg = "<img class='thumbnail' src='" + dt.img + "'/>";
-        var dataDiv = "<a href='https://en.wikipedia.org/?curid="
-                       + dt.pageid + "'><div class='resultSearch'>"
+        var dataTitle = "<h3>" + dt.title + "</h3>",
+            dataImg = "<img class='thumbnail' src='" + dt.img + "'/>",
+
+            dataDiv = "<div class='resultSearch'>" +
+                       "<a href='https://en.wikipedia.org/?curid="
+                       + dt.pageid + "'>"
                        + dataImg + dataTitle + "</br>"
-                       + dt.extract + "</div></a>";
-        $("#container").append(dataDiv);
+                       + dt.extract + "</a></div>";
+        $("#wrapper").append(dataDiv);
 
    }
 
